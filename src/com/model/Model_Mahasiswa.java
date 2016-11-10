@@ -7,6 +7,7 @@ package com.model;
 
 import com.controler.controller_mahasiswa;
 import com.koneksi.koneksi;
+import com.view.form_dosen;
 import com.view.form_mahasiswa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,6 +23,7 @@ import javax.swing.JOptionPane;
 public class Model_Mahasiswa implements controller_mahasiswa{
         String jk;     
     @Override
+    
     public void Simpan(form_mahasiswa mhs) throws SQLException {
     if(mhs.rblaki.isSelected()){
             jk = "Laki-laki";
@@ -121,12 +123,33 @@ public class Model_Mahasiswa implements controller_mahasiswa{
           ResultSet res = stt.executeQuery(sql);
           while(res.next())
           {
-              Object[] ob= new Object[8];
+              Object[] ob= new Object[4];
               ob[0] = res.getString(1);
               ob[1] = res.getString(2);
               ob[2] = res.getString(3);
               ob[3] = res.getString(4);
               mhs.tblmodel.addRow(ob);
+          } 
+      } catch (Exception e) {
+          System.out.println(e);
+      } //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public void Tampil_dosen(form_dosen dosen) throws SQLException {
+       dosen.tblmodel.getDataVector().removeAllElements();
+      dosen.tblmodel.fireTableDataChanged();
+      try {
+          Connection con = koneksi.getKoneksi();
+          Statement stt = con.createStatement();
+          String sql = "select * from tbl_dosen order by id_dosen asc";
+          ResultSet res = stt.executeQuery(sql);
+          while(res.next())
+          {
+              Object[] ob= new Object[2];
+              ob[0] = res.getString(1);
+              ob[1] = res.getString(2);
+              dosen.tblmodel.addRow(ob);
           } 
       } catch (Exception e) {
           System.out.println(e);

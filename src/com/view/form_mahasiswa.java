@@ -115,6 +115,11 @@ public class form_mahasiswa extends javax.swing.JFrame {
         jLabel4.setText("jurusan");
 
         btnbaru.setText("baru");
+        btnbaru.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbaruActionPerformed(evt);
+            }
+        });
 
         btnubah.setText("ubah");
         btnubah.addActionListener(new java.awt.event.ActionListener() {
@@ -282,6 +287,10 @@ public class form_mahasiswa extends javax.swing.JFrame {
             Logger.getLogger(form_mahasiswa.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_tabelMouseClicked
+
+    private void btnbaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbaruActionPerformed
+        model.Baru(this);
+    }//GEN-LAST:event_btnbaruActionPerformed
 
     /**
      * @param args the command line arguments
